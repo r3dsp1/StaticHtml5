@@ -5,10 +5,10 @@
 
 trigger:
 - master
-- task: AzureFileCopy@4
+- task: ArchiveFiles@2
   inputs:
-    SourcePath: '/*'
-    azureSubscription: 'Gold Sponsorship (80b79fb2-fb7d-497d-9158-960c9d900153)'
-    Destination: 'AzureBlob'
-    storage: 'azdevopsstorage1'
-    ContainerName: '$web'
+    rootFolderOrFile: '$(Build.BinariesDirectory)'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
